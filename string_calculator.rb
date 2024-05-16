@@ -4,9 +4,15 @@ require "byebug"
 class StringCalculator
 
   def self.add(numbers)
-    return 0 if numbers.empty?
+  if numbers.empty?
+      return 0
+    elsif numbers.match?(/,\n|\n,|\n\n/)
+      return "Invalid input"
+    end
+
     numbers.split(/[,\n]+/).map(&:to_i).sum
   end
+
 end
 
 class TestStringCalculator < Minitest::Test
@@ -28,6 +34,6 @@ class TestStringCalculator < Minitest::Test
   end
 
   def test_handles_invalid_input_with_newline_after_comma
-    assert_equal 1, StringCalculator.add("1,\n")
+    assert_equal "Invalid input", StringCalculator.add("1,\n")
   end
 end

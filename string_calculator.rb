@@ -17,6 +17,9 @@ class StringCalculator
         numbers = numbers[4..-1]
       end
 
+    negatives = numbers.scan(/-\d+/).join(", ")
+    raise "Negative numbers not allowed: #{negatives}" if negatives != ""
+
     numbers.split(/[,\n#{delimiter}]/).map(&:to_i).sum
 
   end

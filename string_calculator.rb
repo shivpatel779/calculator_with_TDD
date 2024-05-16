@@ -36,4 +36,8 @@ class TestStringCalculator < Minitest::Test
   def test_handles_invalid_input_with_newline_after_comma
     assert_equal "Invalid input", StringCalculator.add("1,\n")
   end
+
+  def test_supports_custom_delimiters
+    assert_equal 3, StringCalculator.add("//;\n1;2")
+  end
 end

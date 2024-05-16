@@ -11,6 +11,14 @@ class StringCalculator
     end
 
     numbers.split(/[,\n]+/).map(&:to_i).sum
+    delimiter = ","
+      if numbers.start_with?("//")
+        delimiter = numbers[2]
+        numbers = numbers[4..-1]
+      end
+
+    numbers.split(/[,\n#{delimiter}]/).map(&:to_i).sum
+
   end
 
 end
